@@ -5,7 +5,7 @@
 ########################################################################
 #!/usr/bin/env python3
 
-import argparse
+import configargparse
 import logging
 import requests
 import sys
@@ -32,33 +32,39 @@ CHAIN_BY_CAIP2_AlIAS = {
 }
 
 def parseArguments():
-    parser = argparse.ArgumentParser()
+    parser = configargparse.ArgumentParser()
     parser.add_argument('--graph-node-status-endpoint',
+        env_var='GRAPH_NODE_STATUS_ENDPOINT',
         dest='graph_node_status_endpoint',
         help='Graph-node status endpoint, (default: %(default)s)',
         default='http://index-node-0:8030/graphql',
         type=str)
     parser.add_argument('--poifier-token',
+        env_var='POIFIER_TOKEN',
         dest='poifier_token',
         help='Auth token, request token via POIfier portal or provide keys --mnemonic and --indexer-address',
         type=str)
     parser.add_argument('--poifier-server',
+        env_var='POIFIER_SERVER',
         dest='poifier_server',
         help='URL of POIfier server (default: %(default)s)',
         default='https://poifier.io',
         required=True,
         type=str)
     parser.add_argument('--indexer-agent-epoch-subgraph-endpoint',
+        env_var='INDEXER_AGENT_EPOCH_SUBGRAPH_ENDPOINT',
         dest='indexer_agent_epoch_subgraph_endpoint',
         help='Epoch subgraph for Epoch Oracle (default: %(default)s)',
         default='',
         required=True,
         type=str)
     parser.add_argument('--mnemonic',
+        env_var='MNEMONIC',
         dest='mnemonic',
         help='Provide an Operator mnemonic if --poifier-token is not provided',
         type=str)
     parser.add_argument('--indexer-address',
+        env_var='INDEXER_ADDRESS',
         dest='indexer_address',
         help='Provide Indexer address if --poifier-token is not provided',
         type=str) 

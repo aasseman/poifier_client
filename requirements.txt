@@ -3,3 +3,4 @@ python-graphql-client
 hdwallet
 web3
 eth_account
+configargparse
